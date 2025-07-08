@@ -1,21 +1,23 @@
 import tkinter as tk
-from tkinter import messagebox
-import matplotlib.pyplot as plt
+import subprocess
+import os
 
-# GUI
-def show_message():
-    messagebox.showinfo("Test", "Tkinter is working!")
+def open_scheduler():
+    # Path to prog2.py
+    script_path = os.path.join(os.path.dirname(__file__), 'Modules', 'prog2_GUI.py')
 
+    # Open a new terminal window and run prog2.py
+    subprocess.Popen(['python', script_path])
+
+# Setup GUI
 root = tk.Tk()
-root.title("Test")
-tk.Button(root, text="Click me", command=show_message).pack()
+root.title("Student Scheduler")
+root.geometry("300x150")
 
-# Matplotlib Test (on button click)
-def plot_chart():
-    plt.bar(["Food", "Rent", "Fun"], [2000, 5000, 1200])
-    plt.title("Sample Expenses")
-    plt.show()
+label = tk.Label(root, text="Welcome to Pomogachi!", font=("Arial", 16))
+label.pack(pady=10)
 
-tk.Button(root, text="Show Chart", command=plot_chart).pack()
+btn = tk.Button(root, text="Schedule Subject", command=open_scheduler, bg="#4CAF50", fg="white", padx=10, pady=5)
+btn.pack(pady=20)
 
 root.mainloop()
